@@ -1,4 +1,5 @@
 {
+  "proxy": "http://localhost:2368/ghost/api/",
   "name": "@tryghost/koenig-react",
   "version": "0.0.0",
   "repository": "https://github.com/TryGhost/Koenig/tree/main/packages/koenig-react",
@@ -46,6 +47,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-mobiledoc-editor": "0.13.0",
+    "react-router-dom": "6",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.0"
   },
