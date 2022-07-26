@@ -7,36 +7,46 @@
   "scripts": {
     "start": "export PORT=1337;react-scripts start",
     "build": "react-scripts build",
+    "build:bundle": "npx rollup --config",
+    "build:bundle:watch": "npx rollup --config -w",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .js --cache",
     "posttest": "yarn lint",
-    "build:bundle": "yarn webpack --config webpack.config.js",
-    "serve": "yarn webpack serve"
+    "serve:bundle":"cd dist && npx http-server ./dist --cors --p 1991"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
+    "@babel/plugin-transform-runtime": "^7.18.9",
     "@babel/preset-env": "^7.18.9",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.1",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-replace": "^4.0.0",
     "@tailwindcss/typography": "^0.5.4",
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",
     "c8": "7.11.3",
-    "copy-webpack-plugin": "^11.0.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-ghost": "2.12.0",
     "glob": "^8.0.3",
+    "http-server": "^14.1.1",
     "mocha": "10.0.0",
     "node-static": "^0.7.11",
     "nodemon": "^2.0.19",
     "postcss": "^8.4.14",
+    "rollup": "^2.77.1",
+    "rollup-plugin-filesize": "^9.1.2",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-serve": "^2.0.0",
     "should": "13.2.3",
     "sinon": "14.0.0",
-    "tailwindcss": "^3.1.6",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack-cli": "^4.10.0"
+    "tailwindcss": "^3.1.6"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
