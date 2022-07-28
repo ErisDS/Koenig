@@ -13,6 +13,12 @@ module.exports = {
     resolve: {
         alias: {
             'mobiledoc-kit': require.resolve('@tryghost/mobiledoc-kit-experimental')
+        },
+        fallback: {
+            path: require.resolve('path-browserify'),
+            os: require.resolve('os-browserify/browser'),
+            util: require.resolve('util/'),
+            fs: false
         }
     },
     module: {
@@ -20,7 +26,7 @@ module.exports = {
             {
                 test: /\.css$/i,
                 include: path.resolve(__dirname, 'src'),
-                use: ['to-string-loader', 'css-loader', 'postcss-loader']
+                use: ['style-loader', 'css-loader', 'postcss-loader']
             },
             {
                 test: /\.m?js$/,

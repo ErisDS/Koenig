@@ -1,28 +1,12 @@
 import * as React from 'react';
-import root from 'react-shadow';
 import Koenig from './components/Koenig';
-import styles from './index.css';
-
-const resetStyles = `
-* {
-    color: initial;
-    font-size: initial;
-}
-`;
-
-const Styles = () => {
-    return (
-        <style>
-            {resetStyles}
-            {styles}
-        </style>
-    );
-};
+import tw from 'twin.macro';
+import './index.css';
 
 const KoenigEditor = ({mobiledoc, atoms, keyCommands, didCreateEditor, onChange}) => {
     return (
-        <root.div mode={'closed'}>
-            <h1 className='font-bold text-5xl'>The Editor!</h1>
+        <>
+            <Title>The Editor!</Title>
             <Koenig
                 mobiledoc={mobiledoc}
                 atoms={atoms}
@@ -30,9 +14,10 @@ const KoenigEditor = ({mobiledoc, atoms, keyCommands, didCreateEditor, onChange}
                 didCreateEditor={didCreateEditor}
                 onChange={onChange}
             />
-            <Styles />
-        </root.div>
+        </>
     );
 };
 
 export default KoenigEditor;
+
+const Title = tw.h1`font-bold text-2xl`;

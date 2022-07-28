@@ -3,6 +3,8 @@ import {Editor, Container, Toolbar} from 'react-mobiledoc-editor';
 import DEFAULT_ATOMS from '../atoms';
 import DEFAULT_KEY_COMMANDS from '../key-commands';
 import DEFAULT_TEXT_EXPANSIONS from '../text-expansions';
+import 'styled-components/macro';
+import tw from 'twin.macro';
 
 const Koenig = ({
     mobiledoc,
@@ -33,19 +35,23 @@ const Koenig = ({
 
         didCreateEditor?.(editor);
     }
-
+    
     return (
         <Container
-            className="my-2 px-2 md:mx-auto md:my-16 max-w-xl w-full"
+            css={ContainerStyle}
             mobiledoc={mobiledoc}
             atoms={atoms}
             onChange={onChange}
             didCreateEditor={_didCreateEditor}
         >
-            <Toolbar className="flex" />
-            <Editor className="prose"/>
+            <Toolbar css={ToolbarStyle} />
+            <Editor css={EditorContent}/>
         </Container>
     );
 };
 
 export default Koenig;
+
+const ContainerStyle = tw`my-2 px-2 md:mx-auto md:my-16 max-w-xl w-full`;
+const ToolbarStyle = tw`flex`;
+const EditorContent = tw`prose`;
