@@ -8,31 +8,28 @@ const SlashMenu = ({closeMenu, containerId, koenigEditor, ...props}) => {
     // menu when we detect a click outside. This is preferable to
     // watching the range because the range will change and remove the
     // menu before click events on the buttons are registered
-    useEffect(() => {
-        const handleWindowMousedown = (event) => {
-            // clicks outside the menu should always close
-            if (!event.target.closest(`#${containerId}, .fullscreen-modal-container`)) {
-                closeMenu();
 
-            // clicks on the menu but not on a button should be ignored so that the
-            // cursor position isn't lost
-            } else if (!event.target.closest('[data-kg="cardmenu-card"]')) {
-                event.preventDefault();
-            }
-        };
-        window.addEventListener('mousedown', handleWindowMousedown);
-
+    const handleWindowMousedown = React.useCallback((event) => {
+        if (!event.target.closest(`#${containerId}, .fullscreen-modal-container`)) {
+            closeMenu();
+        } else if (!event.target.closest('[data-kg="cardmenu-card"]')) {
+            event.preventDefault();
+        }
         koenigEditor.mobiledocEditor.registerKeyCommand({
             str: 'ESC',
             name: 'slash_menu_open',
             run: closeMenu
         });
+        koenigEditor.mobiledocEditor.unregisterKeyCommands('slash_menu_open');
+    }, [closeMenu, containerId, koenigEditor]);
+
+    useEffect(() => {
+        window.addEventListener('mousedown', handleWindowMousedown);
 
         return () => {
             window.removeEventListener('mousedown', handleWindowMousedown);
-            koenigEditor.mobiledocEditor.unregisterKeyCommands('slash_menu_open');
         };
-    }, [koenigEditor, containerId, closeMenu]);
+    }, [containerId, closeMenu, handleWindowMousedown]);
 
     return (
         <div className="absolute top-[-10px] left-[-16px] z-[9999999] m-0 mb-3 max-h-[376px] w-[312px] flex-col overflow-y-auto rounded-lg bg-white bg-clip-padding p-0 pt-0 text-sm shadow-xl" role="menu">
