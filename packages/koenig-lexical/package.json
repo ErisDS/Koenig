@@ -35,6 +35,8 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@capacitor/core": "4.6.2",
+    "@capacitor/ios": "4.6.2",
     "@codemirror/lang-javascript": "^6.1.2",
     "@lexical/list": "^0.7.0",
     "@lexical/react": "^0.7.0",
@@ -55,6 +57,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.20.12",
+    "@capacitor/cli": "4.6.2",
     "@etchteam/storybook-addon-status": "^4.2.2",
     "@playwright/test": "^1.30.0",
     "@storybook/addon-actions": "6.5.15",
